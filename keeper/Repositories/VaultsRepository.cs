@@ -55,6 +55,15 @@ public class VaultsRepository : IRepository<Vault, int>
 
   public bool Update(Vault update)
   {
-    throw new NotImplementedException();
+    string sql = @"
+    UPDATE vaults SET
+    name = @name,
+    description = @description,
+    img = @img,
+    isPrivate = @isPrivate
+    WHERE id = @id;
+    ";
+    int rows = _db.Execute(sql, update);
+    return rows > 0;
   }
 }
