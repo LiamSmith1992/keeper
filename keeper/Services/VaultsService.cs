@@ -16,9 +16,12 @@ public class VaultsService
     return vault;
   }
 
-  internal string Delete(int id1, string id2)
+  internal string Delete(int id, string userId)
   {
-    throw new NotImplementedException();
+    Vault original = GetVaultById(id, userId);
+    _repo.Delete(id);
+    return "vault was deleted";
+
   }
 
   internal Vault GetVaultById(int vaultId, string userId)

@@ -27,7 +27,12 @@ public class VaultsRepository : IRepository<Vault, int>
 
   public bool Delete(int id)
   {
-    throw new NotImplementedException();
+    string sql = @"
+    DELETE FROM vaults
+    WHERE id = @id
+    ";
+    int rows = _db.Execute(sql, new { id });
+    return rows > 0;
   }
 
   public List<Vault> Get()
