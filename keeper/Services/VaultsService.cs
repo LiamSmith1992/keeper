@@ -16,6 +16,11 @@ public class VaultsService
     return vault;
   }
 
+  internal string Delete(int id1, string id2)
+  {
+    throw new NotImplementedException();
+  }
+
   internal Vault GetVaultById(int vaultId, string userId)
   {
     Vault vault = _repo.GetOne(vaultId);
@@ -28,5 +33,18 @@ public class VaultsService
       throw new Exception("you don't own that vault");
     }
     return vault;
+  }
+
+  internal Vault UpdateVault(Vault vaultData)
+  {
+    Vault original = GetVaultById(vaultData.Id, vaultData.CreatorId);
+    if (original.CreatorId != vaultData.CreatorId) throw new Exception("You don't own this vault");
+    original.Name = vaultData.Name ?? original.Name;
+    original.Description = vaultData.Description ?? original.Description;
+    original.Img = vaultData.Img ?? original.Img;
+    original.IsPrivate = vaultData.IsPrivate ?? original.IsPrivate;
+
+    _repo.Update(original);
+    return original;
   }
 }
