@@ -45,6 +45,10 @@ public class KeepsRepository : IRepository<Keep, int>
   public Keep GetOne(int id)
   {
     string sql = @"
+    UPDATE keeps set
+    views = views +1
+    WHERE id = @id;
+    
     SELECT 
     k.*,
     a.*

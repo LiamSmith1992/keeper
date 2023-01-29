@@ -96,7 +96,7 @@ public class VaultsController : ControllerBase
     {
       Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
 
-      List<Keep> keeps = _keepsService.GetVaultKeeps(id, userInfo.Id);
+      List<Keep> keeps = _keepsService.GetVaultKeeps(id, userInfo?.Id);
       return Ok(keeps);
     }
     catch (Exception e)

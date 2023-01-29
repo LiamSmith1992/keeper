@@ -22,14 +22,16 @@ public class VaultKeepsController : ControllerBase
     try
     {
       Keeper userInfo = await _auth.GetUserInfoAsync<Keeper>(HttpContext);
+
+
       vaultKeepData.CreatorId = userInfo.Id;
       VaultKeep vaultKeep = _vaultKeepsService.Create(vaultKeepData);
+      return Ok(vaultKeep);
       // userInfo.KeeperId = id;
       //   userInfo.CreatorId = vaultKeepData.CreatorId;
       //   userInfo.VaultId = vaultKeepData.VaultId;
       //   userInfo.KeepId = vaultKeepData.KeepId;
 
-      return Ok(vaultKeep);
     }
     catch (Exception e)
     {
