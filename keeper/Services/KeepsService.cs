@@ -4,10 +4,12 @@ namespace keeper.Services;
 public class KeepsService
 {
   private readonly KeepsRepository _repo;
+  private readonly VaultsRepository _vaultsRepository;
 
-  public KeepsService(KeepsRepository repo)
+  public KeepsService(KeepsRepository repo, VaultsRepository vaultsRepository)
   {
     _repo = repo;
+    _vaultsRepository = vaultsRepository;
   }
 
   internal Keep Create(Keep keepData)
@@ -40,22 +42,36 @@ public class KeepsService
     {
       throw new Exception("no keep with that id");
     }
+
     return keep;
   }
 
-  internal List<Keep> GetVaultKeeps(int vaultId)
+  internal List<Keep> GetVaultKeeps(int vaultId, string userId)
   {
+    Vault vault = _vaultsRepository.GetOne(vaultId);
+    if (vault.IsPrivate != false && vault.CreatorId != userId)
+    {
+      throw new Exception("Private Vault please leave");
+    }
     List<Keep> keeps = _repo.GetVaultKeeps(vaultId);
+    // if (keeps.isPrivate = true){
+    //   throw new Exception("this is private bro");
+    // }
     return keeps;
   }
 
-  internal Keep Update(Keep keepData, int id)
+  internal Keep Update(Keep keepData, int id, string userId)
   {
     Keep original = GetOne(id);
+    if (original.CreatorId != userId)
+    {
+      throw new Exception("not your keep");
+    }
     original.Name = keepData.Name ?? original.Name;
     original.Description = keepData.Description ?? original.Description;
     original.Img = keepData.Img ?? original.Img;
     bool edited = _repo.Update(original);
+
     if (edited == false)
     {
       throw new Exception("was not updated");
