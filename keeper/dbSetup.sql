@@ -39,3 +39,18 @@ CREATE TABLE
         isPrivate BOOL DEFAULT false,
         FOREIGN KEY (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
+
+CREATE TABLE
+    vaultKeeps(
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        creatorId VARCHAR(255) NOT NULL,
+        vaultId INT NOT NULL,
+        keepId INT NOT NULL,
+        Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE,
+        Foreign Key (vaultId) REFERENCES vaults (id) ON DELETE CASCADE,
+        Foreign Key (keepId) REFERENCES keeps (id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
+
+DROP TABLE vaultKeeps;

@@ -11,3 +11,8 @@ public class Vault
   public bool? IsPrivate { get; set; }
   public Account Creator { get; set; }
 }
+
+public class MyVault : Vault
+{
+  public int VaultId { get; set; }
+}

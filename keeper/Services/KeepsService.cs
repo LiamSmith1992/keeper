@@ -43,6 +43,12 @@ public class KeepsService
     return keep;
   }
 
+  internal List<Keep> GetVaultKeeps(int vaultId)
+  {
+    List<Keep> keeps = _repo.GetVaultKeeps(vaultId);
+    return keeps;
+  }
+
   internal Keep Update(Keep keepData, int id)
   {
     Keep original = GetOne(id);

@@ -14,3 +14,7 @@ public class Keep
   public Account Creator { get; set; }
 }
 
+public class MyKeep : Keep
+{
+  public int KeepId { get; set; }
+}

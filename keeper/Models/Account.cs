@@ -8,4 +8,10 @@ public class Account
   public string CoverImg { get; set; }
 }
 
-
+public class Keeper : Account
+{
+  // public string CreatorId { get; set; }
+  public int KeeperId { get; set; }
+  // public int VaultId { get; set; }
+  // public int KeepId { get; set; }
+}
