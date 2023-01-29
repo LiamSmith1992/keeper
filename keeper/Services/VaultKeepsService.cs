@@ -23,8 +23,9 @@ public class VaultKeepsService
     return vaultKeep;
   }
 
-
-
-
-
+  internal string Delete(int id, string userId)
+  {
+    string message = _repo.Delete(id, userId);
+    return "Yep its gone";
+  }
 }

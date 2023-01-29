@@ -26,8 +26,16 @@ public class VaultKeepsRepository
     return vaultKeepData;
   }
 
-
-
-
-
+  internal string Delete(int id, string userId)
+  {
+    string sql = @"
+    DELETE FROM vaultKeeps
+    WHERE
+    id = @id 
+    AND
+    creatorId = @userId
+    ";
+    int rows = _db.Execute(sql, new { id, userId });
+    return "no mas";
+  }
 }
