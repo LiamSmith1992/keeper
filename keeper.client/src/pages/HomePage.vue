@@ -1,43 +1,102 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img
-        src="https://bcw.blob.core.windows.net/public/img/8600856373152463"
-        alt="CodeWorks Logo"
-        class="rounded-circle"
-      >
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
-    </div>
+  <div class="container-fluid">
+
+    <body class="masonry-with-columns ">
+
+
+      <section class="row">
+
+
+        <div class="col-3 m-2 " v-for="k in keeps">
+          <KeepsCard :keeps="k" />
+        </div>
+        <!-- items -->
+
+
+
+
+
+      </section>
+    </body>
+
   </div>
 </template>
 
 <script>
+import { onMounted, computed } from "vue";
+import { logger } from "../utils/Logger";
+import { keepsService } from "../services/KeepsService";
+import { AppState } from "../AppState";
+import KeepsCard from "../components/KeepsCard.vue";
 export default {
+
+
+
   setup() {
-    return {}
-  }
+    onMounted(() => {
+      getKeeps()
+    })
+
+    async function getKeeps() {
+      try {
+        await keepsService.getKeeps()
+      } catch (error) {
+        logger.error(error.message)
+      }
+    }
+
+
+
+
+    return {
+      keeps: computed(() => AppState.keeps),
+
+
+
+
+    }
+  },
+  components: { KeepsCard }
 }
 </script>
 
 <style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
+body {
+  margin: 1;
+  padding: 1rem;
+}
 
-  .home-card {
-    width: 50vw;
+.masonry-with-columns {
+  columns: 4 200px;
+  column-gap: 2rem;
+  column-width: 100%;
+  grid-row: unset;
+  // column-rule-style: inherit;
 
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
+  div {
+    width: 150px;
+    // background: #EC985A;
+    // color: white;
+    // margin: 0 1rem 1rem 0;
+    display: block;
+    width: 100%;
+    // height: 100%;
+    // text-align: ;
+    text-justify: bottom;
+    font-family: system-ui;
+    font-weight: 400;
+    font-size: 2rem;
+
+
+  }
+
+
+
+  @for $i from 1 through 36 {
+    div:nth-child(#{$i}) {
+      $h: (random(400) + 100)+px;
+      height: $h;
+      line-height: $h;
     }
   }
 }

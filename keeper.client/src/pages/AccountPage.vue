@@ -12,7 +12,7 @@
     <h1>{{ account.name }}</h1>
     <p>{{ account.email }}</p>
   </div>
-  <p>{{ vaults. }}</p>
+  <p>{{ vaults }}</p>
 </template>
 
 <script>
@@ -43,7 +43,7 @@ export default {
 
     async function getAccountKeeps() {
       try {
-        debugger
+
         await keepsService.getProfileKeeps(route.params.id)
 
       } catch (error) {
