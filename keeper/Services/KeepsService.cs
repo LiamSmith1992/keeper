@@ -46,17 +46,15 @@ public class KeepsService
     return keep;
   }
 
-  internal List<Keep> GetVaultKeeps(int vaultId, string userId)
+  internal List<Keeper> GetVaultKeeps(int vaultId, string userId)
   {
     Vault vault = _vaultsRepository.GetOne(vaultId);
     if (vault.IsPrivate != false && vault.CreatorId != userId)
     {
       throw new Exception("Private Vault please leave");
     }
-    List<Keep> keeps = _repo.GetVaultKeeps(vaultId);
-    // if (keeps.isPrivate = true){
-    //   throw new Exception("this is private bro");
-    // }
+    List<Keeper> keeps = _repo.GetVaultKeeps(vaultId);
+
     return keeps;
   }
 

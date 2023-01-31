@@ -40,6 +40,8 @@ CREATE TABLE
         FOREIGN KEY (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
+DROP TABLE vaults;
+
 CREATE TABLE
     vaultKeeps(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

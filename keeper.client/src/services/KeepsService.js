@@ -10,16 +10,25 @@ class KeepsService {
       const res = await api.get('api/keeps')
       logger.log('keeps', res.data)
       AppState.keeps = res.data
+
     } catch (error) {
       logger.error(error.message)
     }
   }
 
   async getProfileKeeps(userId) {
-    const res = await api.get('api/profiles/' + userId + 'keeps')
+    const res = await api.get('account/keeps')
     logger.log(res.data)
-    AppState.keeps = res.data
+    AppState.accountKeeps = res.data
+
   }
+
+  async getOneKeep(keepId) {
+    const res = await api.get('api/keeps/' + keepId)
+    logger.log('getting keep', res.data)
+    AppState.activeKeep = res.data
+  }
+
 }
 
 

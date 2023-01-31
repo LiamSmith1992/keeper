@@ -17,11 +17,11 @@ public class VaultKeepsController : ControllerBase
 
   [HttpPost]
   [Authorize]
-  public async Task<ActionResult<Keeper>> Create([FromBody] VaultKeep vaultKeepData)
+  public async Task<ActionResult<VaultKeep>> Create([FromBody] VaultKeep vaultKeepData)
   {
     try
     {
-      Keeper userInfo = await _auth.GetUserInfoAsync<Keeper>(HttpContext);
+      Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
 
 
       vaultKeepData.CreatorId = userInfo.Id;

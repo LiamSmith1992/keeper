@@ -88,21 +88,24 @@ public class KeepsRepository : IRepository<Keep, int>
     return rows > 0;
   }
 
-  internal List<Keep> GetVaultKeeps(int vaultId)
+  internal List<Keeper> GetVaultKeeps(int vaultId)
   {
     string sql = @"
     SELECT
    k.*,
-   a.*,
-   vk.*
-   FROM keeps k 
-  JOIN accounts a ON k.creatorId = a.id
-  JOIN vaultKeeps vk ON k.creatorId = vk.creatorId
-   WHERE vk.vaultId = @vaultId
+  
+   vk.*,
+   a.*
+   FROM keeps k
+   LEFT JOIN vaultKeeps vk ON k.id = vk.vaultId
+  JOIN accounts a ON vk.creatorId = a.id
+   WHERE vk.vaultId = @vaultId;
     ";
-    List<Keep> keeps = _db.Query<Keep, Account, VaultKeep, Keep>(sql, (keep, account, vaultKeep) =>
+    List<Keeper> keeps = _db.Query<Keeper, VaultKeep, Account, Keeper>(sql, (keep, vaultKeep, account) =>
     {
+      keep.VaultKeepId = vaultKeep.Id;
       keep.Creator = account;
+
       // keep.vaultKeepId = vaultKeep.Id;
       return keep;
     }, new { vaultId }).ToList();
