@@ -18,9 +18,16 @@ public class VaultKeepsService
   internal VaultKeep Create(VaultKeep vaultKeepData)
   {
     Vault vault = _vaultsService.GetVaultById(vaultKeepData.VaultId, vaultKeepData.CreatorId);
+    if (vault.IsPrivate == true && vaultKeepData.CreatorId != vault.CreatorId)
+    {
+      throw new Exception("you can't do that");
+    }
     Keep keep = _keepsService.GetOne(vaultKeepData.KeepId);
     VaultKeep vaultKeep = _repo.Create(vaultKeepData);
+
+
     return vaultKeep;
+
   }
 
   internal string Delete(int id, string userId)
