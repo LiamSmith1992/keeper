@@ -18,6 +18,10 @@ public class VaultKeepsService
   internal VaultKeep Create(VaultKeep vaultKeepData)
   {
     Vault vault = _vaultsService.GetVaultById(vaultKeepData.VaultId, vaultKeepData.CreatorId);
+    if (vault.CreatorId != vaultKeepData.CreatorId)
+    {
+      throw new Exception("you can't do that");
+    }
     if (vault.IsPrivate == true && vaultKeepData.CreatorId != vault.CreatorId)
     {
       throw new Exception("you can't do that");

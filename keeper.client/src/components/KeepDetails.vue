@@ -24,6 +24,12 @@
               </select>
               <button @click.prevent="createVaultKeep(refId, keep.id)" class="btn btn-success ms-3">Save</button>
             </form>
+            <div>
+
+              <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
+                <img class="profile-img" :title="keep.creator?.name" :src="keep.creator?.picture" alt="">
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -71,6 +77,7 @@ export default {
 
     }
   }
+
 };
 </script>
 

@@ -27,6 +27,8 @@
         </div>
       </div>
       <div v-for="v in vaults" class="col-3 m-2">
+        <button v-if="v.creatorId == account.id" @click="deleteVault(v.id)" title="Delete Vault"
+          class="mdi mdi-delete"></button>
         <VaultCard :vaults="v" />
 
       </div>
@@ -43,6 +45,8 @@
         </div>
       </div>
       <div v-for="k in keeps" class="col-3 m-2">
+        <button v-if="k.creatorId == account.id" @click="deleteKeep(k.id)"
+          class="btn btn-danger mdi mdi-delete"></button>
         <KeepsCard :keeps="k" />
       </div>
     </section>
@@ -76,6 +80,10 @@ import KeepsCard from "../components/KeepsCard.vue"
 import Modal from "../components/Modal.vue"
 import VaultForm from "../components/VaultForm.vue"
 import KeepForm from "../components/KeepForm.vue"
+import { vaultsService } from "../services/VaultsService"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
+import { keepsService } from "../services/KeepsService"
 
 export default {
 
@@ -93,6 +101,26 @@ export default {
       coverImg: computed(() => `url(${AppState.account?.coverImg})`),
       vaults: computed(() => AppState.accountVaults),
       keeps: computed(() => AppState.accountKeeps),
+
+      async deleteVault(vaultId) {
+        try {
+          const yes = await Pop.confirm('Delete Vault?')
+          if (!yes) { return }
+          await vaultsService.deleteVault(vaultId)
+        } catch (error) {
+          logger.error(error.message)
+        }
+      },
+      async deleteKeep(keepId) {
+        try {
+          const yes = await Pop.confirm('Delete Keep?')
+          if (!yes) { return }
+          await keepsService.deleteKeep(keepId)
+        } catch (error) {
+          logger.error(error.message)
+        }
+      }
+
 
     }
   },

@@ -1,6 +1,7 @@
 import { AppState } from "../AppState"
 import { api } from "./AxiosService"
 import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
 
 class VaultsService {
 
@@ -28,6 +29,17 @@ class VaultsService {
     AppState.accountVaults.push(res.data)
     return res.data
   }
+
+  async deleteVault(vaultId) {
+
+    const res = await api.delete('api/vaults/' + vaultId)
+    logger.log(res.data)
+    Pop.toast('vault was deleted', "success")
+    AppState.accountVaults = AppState.accountVaults.filter(v => v.id != vaultId)
+  }
+
+
+
 
 }
 

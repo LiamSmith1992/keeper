@@ -10,7 +10,13 @@
               {{ keeps.name }}
             </div>
           </div>
-          <img class=" profile-img" :title="keeps.creator?.name" :src="keeps.creator?.picture" alt="">
+          <div>
+            <!-- FIXME ASK JAKE -->
+            <!-- <router-link :to="{ name: 'Profile', params: { profileId: keeps.creatorId } }"> -->
+            <img class="profile-img" :title="keeps.creator?.name" :src="keeps.creator?.picture" alt="">
+            <!-- </router-link> -->
+
+          </div>
         </div>
       </div>
     </div>
@@ -29,6 +35,12 @@ import { logger } from "../utils/Logger";
 export default {
   props: { keeps: { type: Object, required: true } },
   setup() {
+
+
+
+
+
+
     return {
       async setActiveKeep(keepId) {
         try {
@@ -37,9 +49,12 @@ export default {
         } catch (error) {
           logger.error(error.message)
         }
-      }
+      },
 
+      // goToProfile(creator) {
 
+      //   router.push({ name: 'Profile', params: { profileId: creator?.id } })
+      // }
 
 
     };
@@ -47,7 +62,6 @@ export default {
 
 
   },
-
 };
 </script>
 
@@ -73,7 +87,7 @@ export default {
   // width: 235px;
   padding: 20px;
   // border: 1px solid rgb(100, 100, 100);
-  break-inside: avoid;
+  // break-inside: avoid;
   margin-bottom: 10px;
   height: 40vh;
   width: 100%;
