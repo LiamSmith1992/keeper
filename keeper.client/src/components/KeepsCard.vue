@@ -3,6 +3,7 @@
   <div v-if="keeps" class=" masonry">
     <div class="  p-2  ">
       <div class="card  box " :key="keeps" :style="`background-image: url( ${keeps.img} )`">
+
         <div class="d-flex justify-content-around align-items-end ">
           <div @click="setActiveKeep(keeps.id)">
             <div data-bs-toggle="modal" data-bs-target="#keepDetails" class="selectable">

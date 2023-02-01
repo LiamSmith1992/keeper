@@ -6,9 +6,12 @@
         <img class="vault-img  " :src="vault.img" alt="">
 
       </div>
+      <div class="text-center"> Keeps:{{ keeps.length }}</div>
     </section>
     <section v-if="keeps" class="row">
       <div v-for="k in keeps" class="col-3 m-2">
+        <button v-if="vault.creatorId == account.id" @click="deleteKeep(k.vaultKeepId)" title="Delete Keep"
+          class=" ms-1 p-1 btn btn-danger mdi mdi-delete"></button>
         <KeepsCard :keeps="k" />
       </div>
     </section>
@@ -23,6 +26,8 @@ import { useRoute } from "vue-router";
 import { vaultsService } from "../services/VaultsService";
 import { logger } from "../utils/Logger";
 import KeepsCard from "../components/KeepsCard.vue";
+import Pop from "../utils/Pop";
+import { vaultKeepsService } from "../services/VaultKeepsService";
 export default {
   setup() {
     onMounted(() => {
@@ -48,7 +53,23 @@ export default {
 
     return {
       vault: computed(() => AppState.activeVault),
-      keeps: computed(() => AppState.vaultKeeps)
+      keeps: computed(() => AppState.vaultKeeps),
+      account: computed(() => AppState.account),
+
+      async deleteKeep(vaultKeepId) {
+        try {
+
+          const yes = await Pop.confirm("are you sure")
+          if (!yes) { return }
+
+          await vaultKeepsService.deleteKeep(vaultKeepId)
+
+        } catch (error) {
+          logger.error(error.message)
+        }
+      }
+
+
     };
   },
   components: { KeepsCard }

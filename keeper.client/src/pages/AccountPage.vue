@@ -22,7 +22,8 @@
       <div class=" d-flex justify-content-center">
         <div class="underline col-3 d-flex justify-content-center">
           <h1>Vaults</h1>
-          <button class=" ms-2 mdi mdi-plus btn btn-success" title="Create new vault"></button>
+          <button data-bs-toggle="modal" data-bs-target="#vaultForm" class=" ms-2 mdi mdi-plus btn btn-success"
+            title="Create new vault"></button>
         </div>
       </div>
       <div v-for="v in vaults" class="col-3 m-2">
@@ -37,7 +38,8 @@
         <div class="underline col-3 d-flex justify-content-center">
 
           <h1>Keeps </h1>
-          <button title="Create new keep" class=" ms-2 mdi mdi-plus btn btn-success"></button>
+          <button data-bs-toggle="modal" data-bs-target="#keepForm" title="Create new keep"
+            class=" ms-2 mdi mdi-plus btn btn-success"></button>
         </div>
       </div>
       <div v-for="k in keeps" class="col-3 m-2">
@@ -45,6 +47,20 @@
       </div>
     </section>
 
+
+
+
+
+
+    <Modal id="vaultForm">
+      <VaultForm />
+    </Modal>
+    <div>
+
+      <Modal id="keepForm">
+        <KeepForm />
+      </Modal>
+    </div>
   </div>
 
 
@@ -57,6 +73,9 @@ import { computed, } from 'vue'
 import { AppState } from '../AppState'
 import VaultCard from "../components/VaultCard.vue"
 import KeepsCard from "../components/KeepsCard.vue"
+import Modal from "../components/Modal.vue"
+import VaultForm from "../components/VaultForm.vue"
+import KeepForm from "../components/KeepForm.vue"
 
 export default {
 
@@ -77,7 +96,7 @@ export default {
 
     }
   },
-  components: { VaultCard, KeepsCard }
+  components: { VaultCard, KeepsCard, Modal, VaultForm, KeepForm }
 }
 </script>
 

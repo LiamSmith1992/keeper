@@ -1,8 +1,9 @@
 <template>
-  <div class="component">
+  <div v-if="vaults" class="">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Vault', params: { vaultId: vaults?.id } }">
 
       <div class="selectable vault-img card img-fluid" :style="`background-image: url(${vaults.img})`">
+        <div v-if="vaults.isPrivate == true" class="mdi mdi-lock"></div>
         <div class="">
           {{ vaults.description }}
 

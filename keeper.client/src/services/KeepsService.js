@@ -29,6 +29,14 @@ class KeepsService {
     AppState.activeKeep = res.data
   }
 
+  async createKeep(keepData) {
+    const res = await api.post('api/keeps', keepData)
+    logger.log(res.data)
+    AppState.accountKeeps.push(res.data)
+    return res.data
+  }
+
+
 }
 
 

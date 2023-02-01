@@ -48,7 +48,6 @@ public class KeepsRepository : IRepository<Keep, int>
     UPDATE keeps set
     views = views +1
     WHERE id = @id;
-    
     SELECT 
     k.*,
     a.*
@@ -93,12 +92,11 @@ public class KeepsRepository : IRepository<Keep, int>
     string sql = @"
     SELECT
    k.*,
-  
    vk.*,
    a.*
    FROM keeps k
-   LEFT JOIN vaultKeeps vk ON k.id = vk.vaultId
-  JOIN accounts a ON vk.creatorId = a.id
+   JOIN vaultKeeps vk ON k.id = vk.keepId
+  JOIN accounts a ON k.creatorId = a.id
    WHERE vk.vaultId = @vaultId;
     ";
     List<Keeper> keeps = _db.Query<Keeper, VaultKeep, Account, Keeper>(sql, (keep, vaultKeep, account) =>
