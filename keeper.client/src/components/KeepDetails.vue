@@ -11,19 +11,20 @@
       <div class="col-6">
         <h1 class="text-center mt-2">{{ keep.name }}</h1>
         <h5 class="p-2">{{ keep.description }}</h5>
-        <div class="d-flex align-items-end">
-          <div class="dropdown">
-            <button class=" btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><button class="dropdown-item" type="button">Action</button></li>
-              <li><button class="dropdown-item" type="button">Another action</button></li>
-              <li><button class="dropdown-item" type="button">Something else here</button></li>
-            </ul>
+
+        <div>
+
+          <div>
+
+            <form action="">
+
+              <select v-model="refId.vaultId" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>Choose...</option>
+                <option v-for="v in accountVaults" :value="v.id">{{ v.name }}</option>
+              </select>
+              <button @click.prevent="createVaultKeep(refId, keep.id)" class="btn btn-success ms-3">Save</button>
+            </form>
           </div>
-          <button class="btn btn-success rounded-end">Save</button>
         </div>
       </div>
     </section>
@@ -34,14 +35,40 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, ref } from 'vue';
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
+import { vaultKeepsService } from "../services/VaultKeepsService"
+import { useRoute } from "vue-router";
 export default {
   setup() {
-
-
+    const refId = ref({})
+    const route = useRoute()
 
     return {
-      keep: computed(() => AppState.activeKeep)
+      route,
+      keep: computed(() => AppState.activeKeep),
+      accountVaults: computed(() => AppState.accountVaults),
+      activeVault: computed(() => AppState.activeVault),
+      account: computed(() => AppState.account),
+      refId,
+
+
+      async createVaultKeep(refId, keepId) {
+        try {
+          const body = {
+            vaultId: refId.vaultId,
+            keepId: keepId
+          }
+          await vaultKeepsService.createVaultKeep(body)
+          Pop.toast("keep was added", "success")
+
+        } catch (error) {
+          logger.error(error.message)
+        }
+      },
+
+
     }
   }
 };
