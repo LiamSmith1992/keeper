@@ -7,21 +7,21 @@
         </div>
       </section>
 
-      <section>
+      <section class="row">
 
 
-        <img class="rounded-pill " :src="account.picture" alt="" />
-        <div class="d-flex justify-content-center pt-2 mt-1">
-          <button data-bs-toggle="modal" data-bs-target="#editForm" class=" mdi mdi-pencil btn btn-info"></button>
+
+        <div class="d-flex justify-content-center  ">
+          <img class="rounded-pill " :src="account.picture" alt="" />
         </div>
-        <div>
-          <h1>{{ account.name }}</h1>
-          <p>{{ account.email }}</p>
-        </div>
+        <h1>{{ account.name }}</h1>
+        <button data-bs-toggle="modal" data-bs-target="#editForm" class=" mdi mdi-pencil btn btn-info"></button>
 
-        <div class="text-center">
+
+
+        <div class="text-center d-flex justify-content-center">
           <div>Vaults:{{ vaults.length }}</div>
-          <div>Keeps:{{ keeps.length }}</div>
+          <div class="ms-2"> Keeps:{{ keeps.length }}</div>
         </div>
       </section>
 
@@ -34,7 +34,7 @@
               title="Create new vault"></button>
           </div>
         </div>
-        <div v-for="v in vaults" class="col-3 m-2">
+        <div v-for="v in vaults" class="col-3 ">
           <button v-if="v.creatorId == account.id" @click="deleteVault(v.id)" title="Delete Vault"
             class="mdi mdi-delete"></button>
           <VaultCard :vaults="v" />

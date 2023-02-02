@@ -1,18 +1,8 @@
 <template>
 
   <body>
-
     <div class="masonry-with-columns">
-
-
-
-
-
-
       <KeepsCard v-for="k in keeps" :keeps="k" />
-
-
-
     </div>
 
   </body>
@@ -99,7 +89,7 @@ export default {
 // }
 
 .masonry-with-columns {
-  columns: 6 200px;
+  columns: 4 200px;
   column-gap: 1rem;
 
   div {
@@ -119,7 +109,7 @@ export default {
     div:nth-child(#{$i}) {
       $h: (random(400) + 100)+px;
       height: $h;
-      line-height: $h;
+      // line-height: $h;
     }
   }
 }

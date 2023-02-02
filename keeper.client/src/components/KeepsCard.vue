@@ -2,17 +2,13 @@
 
   <!-- <div > -->
 
-  <div v-if="keeps" :key="keeps" :style="`background-image: url( ${keeps.img} )`" class="img-div">
+  <div v-if="keeps" :key="keeps" :style="`background-image: url( ${keeps.img} )`" class="img-div rounded">
     <section class="p-3">
-
       <h5 @click="setActiveKeep(keeps.id)" data-bs-toggle="modal" data-bs-target="#keepDetails" class="selectable">
         {{ keeps.name }}
-
         <img v-if="keeps.creator" class="profile-img" :title="keeps.creator?.name" :src="keeps.creator?.picture" alt="">
       </h5>
     </section>
-
-
   </div>
 
   <!-- </div> -->
