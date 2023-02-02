@@ -7,16 +7,16 @@
       </div>
     </section>
     <section class="d-flex row">
-      <img class="img-height img-fluid col-6" :src="keep.img" alt="">
+      <img class="img-height img-fluid col-6 d-flex" :src="keep.img" alt="">
       <div class="col-6">
         <h1 class="text-center mt-2">{{ keep.name }}</h1>
         <h5 class="p-2">{{ keep.description }}</h5>
 
         <div>
 
-          <div>
+          <div class="d-flex justify-content-around align-items-end">
 
-            <form action="">
+            <form v-if="account" action="">
 
               <select v-model="refId.vaultId" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                 <option selected>Choose...</option>
@@ -27,8 +27,10 @@
             <div>
 
               <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
-                <img class="profile-img" :title="keep.creator?.name" :src="keep.creator?.picture" alt="">
+                <img data-bs-toggle="modal" data-bs-target="#keepDetails" class="profileImg rounded-pill"
+                  :title="keep.creator?.name" :src="keep.creator?.picture" alt="">
               </router-link>
+              <h5 class="m-1">{{ keep.creator.name }}</h5>
             </div>
           </div>
         </div>
@@ -85,5 +87,10 @@ export default {
 <style lang="scss" scoped>
 .img-height {
   height: 55vh;
+}
+
+.profileImg {
+  width: 10vh;
+  height: 10vh;
 }
 </style>

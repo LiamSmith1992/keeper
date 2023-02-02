@@ -22,8 +22,8 @@
       <div class=" d-flex justify-content-center">
         <div class="underline col-3 d-flex justify-content-center">
           <h1>Vaults</h1>
-          <button data-bs-toggle="modal" data-bs-target="#vaultForm" class=" ms-2 mdi mdi-plus btn btn-success"
-            title="Create new vault"></button>
+
+
         </div>
       </div>
       <div v-for="v in vaults" class="col-3 m-2">
@@ -39,8 +39,7 @@
         <div class="underline col-3 d-flex justify-content-center">
 
           <h1>Keeps </h1>
-          <button data-bs-toggle="modal" data-bs-target="#keepForm" title="Create new keep"
-            class=" ms-2 mdi mdi-plus btn btn-success"></button>
+
         </div>
       </div>
       <div v-for="k in keeps" class="col-3 m-2">
@@ -66,7 +65,7 @@
   </div>
 
 
-  <h1>Profile Page</h1>
+
 
 </template>
 

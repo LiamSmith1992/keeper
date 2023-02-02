@@ -50,12 +50,9 @@ export default {
           Modal.getOrCreateInstance('#keepForm').hide()
           Modal.getOrCreateInstance('#keepDetails').show()
           editable.value = {}
-
-          editable.value = {}
         } catch (error) {
           logger.error(error.message)
         }
-
       }
 
 

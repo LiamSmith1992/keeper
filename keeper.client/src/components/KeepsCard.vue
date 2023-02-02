@@ -1,26 +1,21 @@
 <template>
 
-  <div v-if="keeps" class=" masonry">
-    <div class="  p-2  ">
-      <div class="card  box " :key="keeps" :style="`background-image: url( ${keeps.img} )`">
+  <!-- <div > -->
 
-        <div class="d-flex justify-content-around align-items-end ">
-          <div @click="setActiveKeep(keeps.id)">
-            <div data-bs-toggle="modal" data-bs-target="#keepDetails" class="selectable">
-              {{ keeps.name }}
-            </div>
-          </div>
-          <div>
-            <!-- FIXME ASK JAKE -->
-            <!-- <router-link :to="{ name: 'Profile', params: { profileId: keeps.creatorId } }"> -->
-            <img class="profile-img" :title="keeps.creator?.name" :src="keeps.creator?.picture" alt="">
-            <!-- </router-link> -->
+  <div v-if="keeps" :key="keeps" :style="`background-image: url( ${keeps.img} )`" class="img-div">
+    <section class="p-3">
 
-          </div>
-        </div>
-      </div>
-    </div>
+      <h5 @click="setActiveKeep(keeps.id)" data-bs-toggle="modal" data-bs-target="#keepDetails" class="selectable">
+        {{ keeps.name }}
+
+        <img v-if="keeps.creator" class="profile-img" :title="keeps.creator?.name" :src="keeps.creator?.picture" alt="">
+      </h5>
+    </section>
+
+
   </div>
+
+  <!-- </div> -->
 </template>
 
 
@@ -42,6 +37,7 @@ export default {
 
 
     return {
+
       async setActiveKeep(keepId) {
         try {
           await keepsService.getOneKeep(keepId)
@@ -73,6 +69,28 @@ export default {
   border-radius: 100px;
 }
 
+.img-div {
+  background-position: center;
+  background-size: cover;
+}
+
+
+// .img-height {
+
+//   $h: (random(400) + 100)+px;
+//   height: $h;
+//   line-height: $h;
+//   row-gap: 50px;
+// }
+
+// @for $i from 1 through 36 {
+//     div:nth-child(#{$i}) {
+//       $h: (random(400) + 100)+px;
+//       height: $h;
+//       line-height: $h;
+//     }
+//   }
+
 // .masonry {
 //   width: 1200px;
 //   margin: 0px auto;
@@ -83,15 +101,15 @@ export default {
 
 
 
-.box {
-  // width: 235px;
-  padding: 20px;
-  // border: 1px solid rgb(100, 100, 100);
-  // break-inside: avoid;
-  margin-bottom: 10px;
-  height: 40vh;
-  width: 100%;
+// .box {
+//   // width: 235px;
+//   padding: 20px;
+//   // border: 1px solid rgb(100, 100, 100);
+//   // break-inside: avoid;
+//   margin-bottom: 10px;
+//   height: 40vh;
+//   width: 100%;
 
 
-}
+// }
 </style>

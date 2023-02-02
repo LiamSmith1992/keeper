@@ -37,6 +37,7 @@ public class AccountsRepository
     string sql = @"
             UPDATE accounts
             SET 
+              coverImg = @CoverImg,
               name = @Name,
               picture = @Picture
             WHERE id = @Id;";

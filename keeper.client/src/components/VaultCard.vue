@@ -5,7 +5,7 @@
       <div class="selectable vault-img card img-fluid" :style="`background-image: url(${vaults.img})`">
         <div v-if="vaults.isPrivate == true" class="mdi mdi-lock"></div>
         <div class="">
-          {{ vaults.description }}
+          {{ vaults.name }}
 
         </div>
       </div>

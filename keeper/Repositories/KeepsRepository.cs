@@ -80,7 +80,8 @@ public class KeepsRepository : IRepository<Keep, int>
     SET
     name = @name,
     description = @description,
-    img = @img
+    img = @img,
+    kept = @kept
     WHERE id = @id;
     ";
     int rows = _db.Execute(sql, update);

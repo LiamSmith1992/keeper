@@ -63,7 +63,7 @@ public class AccountController : ControllerBase
     }
   }
 
-  [HttpPut]
+  [HttpPut("{id}")]
   [Authorize]
   public async Task<ActionResult<Account>> EditAccount([FromBody] Account accountData)
   {

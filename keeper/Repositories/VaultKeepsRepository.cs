@@ -15,9 +15,7 @@ public class VaultKeepsRepository
   internal VaultKeep Create(VaultKeep vaultKeepData)
   {
     string sql = @"
-     UPDATE keeps set
-    views = kept +1
-    WHERE id = @keepId;
+    
     INSERT INTO vaultKeeps
     (vaultId, keepId, creatorId)
     Values
