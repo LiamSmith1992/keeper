@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container">
 
     <div v-if="account" class="about text-center">
       <section class="row cover-img m-2 rounded">
@@ -11,17 +11,18 @@
 
 
 
-        <div class="d-flex justify-content-center  ">
+        <div class="d-flex justify-content-center">
           <img class="rounded-pill " :src="account.picture" alt="" />
         </div>
         <h1>{{ account.name }}</h1>
-        <button data-bs-toggle="modal" data-bs-target="#editForm" class=" mdi mdi-pencil btn btn-info"></button>
 
 
 
         <div class="text-center d-flex justify-content-center">
           <div>Vaults:{{ vaults.length }}</div>
           <div class="ms-2"> Keeps:{{ keeps.length }}</div>
+          <button data-bs-toggle="modal" data-bs-target="#editForm"
+            class=" mdi mdi-pencil btn btn-info ms-2 mb-2"></button>
         </div>
       </section>
 
@@ -34,9 +35,9 @@
               title="Create new vault"></button>
           </div>
         </div>
-        <div v-for="v in vaults" class="col-3 ">
+        <div v-for="v in vaults" class="col-md-3 col-6 text-light fw-bold  ">
           <button v-if="v.creatorId == account.id" @click="deleteVault(v.id)" title="Delete Vault"
-            class="mdi mdi-delete"></button>
+            class="mdi mdi-delete btn btn-danger m-2"></button>
           <VaultCard :vaults="v" />
 
         </div>
@@ -52,7 +53,7 @@
               class=" ms-2 mdi mdi-plus btn btn-success"></button>
           </div>
         </div>
-        <div v-for="k in keeps" class="col-3 m-2">
+        <div v-for="k in keeps" class="col-md-3 col-6  masonry-with-columns">
           <button v-if="k.creatorId == account.id" @click="deleteKeep(k.id)"
             class=" btn btn-danger mdi mdi-delete"></button>
           <KeepsCard :keeps="k" />
@@ -148,7 +149,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 img {
   max-width: 100px;
 }
@@ -165,10 +166,35 @@ img {
   border-bottom: solid black 6px;
 }
 
-.keep-img {
-  height: 25vh;
-  widows: 100%;
-  object-fit: cover;
-  object-position: center;
+.masonry-with-columns {
+  columns: 4 200px;
+  column-gap: 1rem;
+
+  div {
+    width: 150px;
+    // background: #EC985A;
+    color: white;
+    margin: 1rem 1rem 1rem 0;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-family: system-ui;
+    // font-weight: 900;
+    // font-size: 2rem;
+  }
+
+  @for $i from 1 through 36 {
+    div:nth-child(#{$i}) {
+      $h: (random(400) + 100)+px;
+      height: $h;
+      // line-height: $h;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text {
+      font-size: 16px;
+    }
+  }
 }
 </style>

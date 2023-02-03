@@ -3,31 +3,40 @@
 
 
     <section class="row">
-      <div class="d-flex col-md-6 p-0">
+      <div class="d-flex col-md-6  p-0">
         <img class="img-height img-fluid " :src="keep.img" alt="">
       </div>
-      <div class="col-md-6">
-        <h1 class="text-center mt-2">{{ keep.name }}</h1>
-        <div class="d-flex justify-content-center">
-          <P class="m-1">Kept: {{ keep.kept }}</P>
-          <p class="m-1">views:{{ keep.views }}</p>
-        </div>
-        <h5 class="p-2">{{ keep.description }}</h5>
-        <div class="d-flex justify-content-evenly">
-          <form v-if="account" action="">
-            <select v-model="refId.vaultId" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-              <option selected>Choose...</option>
-              <option v-for="v in accountVaults" :value="v.id">{{ v.name }}</option>
-            </select>
-            <button @click.prevent="createVaultKeep(refId, keep.id)" class="btn btn-success ms-3">Save</button>
-          </form>
-          <div class="text-center">
+      <div class="col-md-6 ">
+        <div class="row topCard">
 
-            <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
-              <img data-bs-toggle="modal" data-bs-target="#keepDetails" class="profileImg rounded-pill"
-                :title="keep.creator?.name" :src="keep.creator?.picture" alt="">
-            </router-link>
-            <h5 class="">{{ keep.creator.name }}</h5>
+          <div class="d-flex  justify-content-center">
+            <P class="m-1">Kept: {{ keep.kept }}</P>
+            <p class="m-1">views:{{ keep.views }}</p>
+          </div>
+        </div>
+        <div class="row middleishCard">
+          <h1 class="text-center m-0">{{ keep.name }}</h1>
+        </div>
+        <div class="row middleCard px-4">
+          <h5 class="p-2">{{ keep.description }}</h5>
+        </div>
+        <div class="row bottomCard">
+          <div class="d-flex justify-content-evenly">
+            <form v-if="account" action="">
+              <select v-model="refId.vaultId" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>Choose...</option>
+                <option v-for="v in accountVaults" :value="v.id">{{ v.name }}</option>
+              </select>
+              <button @click.prevent="createVaultKeep(refId, keep.id)" class="btn btn-success ms-3">Save</button>
+            </form>
+            <div class="text-center">
+
+              <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
+                <img data-bs-toggle="modal" data-bs-target="#keepDetails" class="profileImg rounded-pill"
+                  :title="keep.creator?.name" :src="keep.creator?.picture" alt="">
+              </router-link>
+              <h5 class="">{{ keep.creator.name }}</h5>
+            </div>
           </div>
         </div>
       </div>
@@ -91,5 +100,21 @@ export default {
 .profileImg {
   width: 10vh;
   height: 10vh;
+}
+
+.topCard {
+  height: 30%;
+}
+
+.middleishCard {
+  height: 10%;
+}
+
+.middleCard {
+  height: 40%;
+}
+
+.bottomCard {
+  height: 20%;
 }
 </style>

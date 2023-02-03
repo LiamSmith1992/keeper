@@ -1,6 +1,6 @@
 <template>
 
-  <body>
+  <body class="container">
     <div class="masonry-with-columns">
       <KeepsCard v-for="k in keeps" :keeps="k" />
     </div>
@@ -103,6 +103,7 @@ export default {
     font-family: system-ui;
     // font-weight: 900;
     // font-size: 2rem;
+
   }
 
   @for $i from 1 through 36 {
@@ -112,7 +113,14 @@ export default {
       // line-height: $h;
     }
   }
+
+  @media (max-width: 480px) {
+    columns: 2;
+  }
 }
+
+
+
 
 
 

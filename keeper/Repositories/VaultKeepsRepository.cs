@@ -27,7 +27,7 @@ public class VaultKeepsRepository
     return vaultKeepData;
   }
 
-  internal string Delete(int id, string userId)
+  internal bool Delete(int id, string userId)
   {
     string sql = @"
     DELETE FROM vaultKeeps
@@ -37,6 +37,6 @@ public class VaultKeepsRepository
     creatorId = @userId
     ";
     int rows = _db.Execute(sql, new { id, userId });
-    return "no mas";
+    return rows > 0;
   }
 }

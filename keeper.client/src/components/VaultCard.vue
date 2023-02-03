@@ -4,7 +4,7 @@
 
       <div class="selectable vault-img card img-fluid" :style="`background-image: url(${vaults.img})`">
         <div v-if="vaults.isPrivate == true" class="mdi mdi-lock"></div>
-        <div class="">
+        <div class="bg-bg m-2 rounded">
           {{ vaults.name }}
 
         </div>
@@ -36,5 +36,10 @@ export default {
   width: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.bg-bg {
+  background-color: rgba(0, 0, 0, 0.082);
+  padding: 10px;
 }
 </style>

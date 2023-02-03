@@ -3,10 +3,13 @@
   <!-- <div > -->
 
   <div v-if="keeps" :key="keeps" :style="`background-image: url( ${keeps.img} )`" class="img-div rounded">
-    <section class="p-3">
-      <h5 @click="setActiveKeep(keeps.id)" data-bs-toggle="modal" data-bs-target="#keepDetails" class="selectable">
+    <section class="p-3 d-flex  align-items-end  justify-content-evenly ">
+      <h5 @click="setActiveKeep(keeps.id)" data-bs-toggle="modal" data-bs-target="#keepDetails"
+        class="selectable bg-bg rounded">
         {{ keeps.name }}
-        <img v-if="keeps.creator" class="profile-img" :title="keeps.creator?.name" :src="keeps.creator?.picture" alt="">
+        <img v-if="keeps.creator" class="profile-img" :title="keeps.creator?.name" :src="keeps.creator?.picture"
+          alt="https://thiscatdoesnotexist.com">
+
       </h5>
     </section>
   </div>
@@ -70,6 +73,10 @@ export default {
   background-size: cover;
 }
 
+.bg-bg {
+  background-color: rgba(0, 0, 0, 0.082);
+  padding: 10px;
+}
 
 // .img-height {
 

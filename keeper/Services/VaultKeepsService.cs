@@ -41,7 +41,12 @@ public class VaultKeepsService
 
   internal string Delete(int id, string userId)
   {
-    string message = _repo.Delete(id, userId);
+
+    bool result = _repo.Delete(id, userId);
+    if (result == false)
+    {
+      throw new Exception("You can't do that");
+    };
     return "Yep its gone";
   }
 }

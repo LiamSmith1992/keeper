@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container">
 
     <div v-if="account" class="about text-center">
       <section class="row cover-img m-2 rounded">
@@ -10,7 +10,6 @@
 
       <img class="rounded-pill" :src="account.picture" alt="" />
       <h1>{{ account.name }}</h1>
-      <p>{{ account.email }}</p>
     </div>
 
     <div class="text-center">
@@ -26,7 +25,7 @@
 
         </div>
       </div>
-      <div v-for="v in vaults" class="col-3 m-2">
+      <div v-for="v in vaults" class="col-3 align-items-evenly mt-4">
 
         <VaultCard :vaults="v" />
 
@@ -35,14 +34,18 @@
     </section>
 
     <section v-if="keeps" class="row">
-      <div class=" d-flex justify-content-center">
+      <div class=" d-flex justify-content-center col-12">
         <div class="underline col-3 d-flex justify-content-center">
 
           <h1>Keeps </h1>
 
         </div>
       </div>
-      <div v-for="k in keeps" class="col-3 m-2">
+
+    </section>
+    <section class="row">
+
+      <div v-for="k in keeps" class="col-3  masonry-with-columns">
 
         <KeepsCard :keeps="k" />
       </div>
@@ -140,7 +143,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 img {
   max-width: 100px;
 }
@@ -162,5 +165,31 @@ img {
   widows: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.masonry-with-columns {
+  columns: 4 200px;
+  column-gap: 1rem;
+
+  div {
+    width: 150px;
+    // background: #EC985A;
+    color: white;
+    margin: 1rem 1rem 1rem 0;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-family: system-ui;
+    // font-weight: 900;
+    // font-size: 2rem;
+  }
+
+  @for $i from 1 through 36 {
+    div:nth-child(#{$i}) {
+      $h: (random(400) + 100)+px;
+      height: $h;
+      // line-height: $h;
+    }
+  }
 }
 </style>
