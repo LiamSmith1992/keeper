@@ -11,10 +11,13 @@
         <div class="text-center"> Keeps:{{ keeps.length }}</div>
       </section>
       <section v-if="keeps" class="row">
-        <div v-for="k in keeps" class="col-3 m-2">
+        <div v-for="k in keeps" class="col-3 m-2 ">
           <button v-if="vault.creatorId == account.id" @click="deleteKeep(k.vaultKeepId)" title="Delete Keep"
-            class=" ms-1 p-1 btn btn-danger mdi mdi-delete"></button>
-          <KeepsCard :keeps="k" />
+            class="  ms-1 p-1 btn btn-danger mdi mdi-delete"></button>
+
+
+          <KeepsCard :keeps="k" class="" />
+
         </div>
       </section>
     </div>
@@ -100,5 +103,17 @@ export default {
   height: 45vh;
   object-fit: cover;
 
+}
+
+
+.delete-btn {
+  visibility: hidden;
+  opacity: 0;
+  transition: ease 2s;
+}
+
+.delete-btn-header:hover+.delete-btn {
+  visibility: visible;
+  opacity: 1;
 }
 </style>
