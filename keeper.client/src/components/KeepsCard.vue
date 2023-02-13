@@ -2,7 +2,7 @@
 
   <!-- <div > -->
 
-  <div v-if="keeps" :key="keeps" :style="`background-image: url( ${keeps.img} )`" class="img-div rounded ">
+  <div v-if="keeps" :key="keeps" :style="`background-image: url( ${keeps.img} )`" class="img-div rounded me-0 ">
     <section class="p-3 d-flex  align-items-end  justify-content-evenly ">
       <h5 @click="setActiveKeep(keeps.id)" data-bs-toggle="modal" data-bs-target="#keepDetails"
         class="selectable bg-bg rounded">
@@ -71,6 +71,7 @@ export default {
 .img-div {
   background-position: center;
   background-size: cover;
+  border: 3px rgba(37, 35, 35, 0.821) solid;
 }
 
 .bg-bg {

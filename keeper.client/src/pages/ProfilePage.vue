@@ -106,7 +106,6 @@ export default {
 
     async function getProfileVaults() {
       try {
-        debugger
         await profilesService.getProfileVaults(route.params.profileId)
       } catch (error) {
         logger.error(error.message)

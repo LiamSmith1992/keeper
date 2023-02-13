@@ -1,6 +1,6 @@
 <template>
 
-  <body class="container">
+  <body class="container-fluid px-2  bg-color">
     <div class="masonry-with-columns">
       <KeepsCard v-for="k in keeps" :keeps="k" />
     </div>
@@ -48,6 +48,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.bg-color {
+  background-color: rgb(142, 133, 133);
+}
+
+
 // .container {
 //   width: 1200px;
 //   margin: 0px auto;

@@ -93,7 +93,7 @@ export default {
 
 <style lang="scss" scoped>
 .img-height {
-  min-height: 55vh;
+  min-height: 70vh;
   object-fit: cover;
 }
 

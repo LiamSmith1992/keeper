@@ -36,6 +36,7 @@ export default {
   width: 100%;
   object-fit: cover;
   object-position: center;
+  border: 3px rgba(37, 35, 35, 0.821) solid;
 }
 
 .bg-bg {
