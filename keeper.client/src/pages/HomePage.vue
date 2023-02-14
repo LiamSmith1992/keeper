@@ -49,7 +49,7 @@ export default {
 
 <style scoped lang="scss">
 .bg-color {
-  background-color: rgb(142, 133, 133);
+  background-color: rgb(191, 176, 176);
 }
 
 

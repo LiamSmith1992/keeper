@@ -21,8 +21,8 @@
         <div class="text-center d-flex justify-content-center">
           <div>Vaults:{{ vaults.length }}</div>
           <div class="ms-2"> Keeps:{{ keeps.length }}</div>
-          <button data-bs-toggle="modal" data-bs-target="#editForm"
-            class=" mdi mdi-pencil btn btn-info ms-2 mb-2"></button>
+          <button data-bs-toggle="modal" data-bs-target="#editForm" class=" mdi mdi-pencil btn btn-info ms-2 mb-2"
+            title="Edit Profile"></button>
         </div>
       </section>
 
@@ -31,7 +31,7 @@
         <div class=" d-flex justify-content-center">
           <div class="underline col-3 d-flex justify-content-center">
             <h1>Vaults</h1>
-            <button data-bs-toggle="modal" data-bs-target="#vaultForm" class=" ms-2 mdi mdi-plus btn btn-success"
+            <button data-bs-toggle="modal" data-bs-target="#vaultForm" class="my-2 ms-2 mdi mdi-plus btn btn-success"
               title="Create new vault"></button>
           </div>
         </div>
@@ -50,7 +50,7 @@
 
             <h1>Keeps </h1>
             <button data-bs-toggle="modal" data-bs-target="#keepForm" title="Create new keep"
-              class=" ms-2 mdi mdi-plus btn btn-success"></button>
+              class=" my-2 ms-2 mdi mdi-plus btn btn-success"></button>
           </div>
         </div>
         <div v-for="k in keeps" class="col-md-3 col-6  masonry-with-columns">
