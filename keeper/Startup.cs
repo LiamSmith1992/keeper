@@ -45,6 +45,8 @@ public class Startup
 
     services.AddScoped<ProfilesRepository>();
     services.AddScoped<ProfilesService>();
+
+
   }
 
   private void ConfigureCors(IServiceCollection services)
